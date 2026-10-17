@@ -1,0 +1,10 @@
+:root {
+  --bg-a: #172554; --bg-b: #264ca1;
+  --cyan: #67e8f9; --gold: #fde68a; --lilac: #d8b4fe; --violet: #a855f7; --pink: #ff2d87;
+  --card: rgba(22, 13, 40, 0.68);
+  --font-main: 'Adamina', Georgia, serif;
+  --font-ui: 'Poppins', system-ui, sans-serif;
+  --pad: 16px; /* padding horizontal section: 16 (mobile Figma) → 28 (tablet) → 40 (desktop) */
+}
+@media (min-width: 768px) { :root { --pad: 28px; } }
+@media (min-width: 1200px) { :root { --pad: 40px; } }

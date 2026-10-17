@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#172554" />
+  <meta name="description"
+    content="Portfolio Muhammad Ibnu Akbar — Creative Digital Studio: UI/UX, digital poster, social media, dan web development." />
+  <title>Muhammad Ibnu Akbar — Portfolio Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    #boot-loader .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top: 4px solid #00e5ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #boot-loader .spinner {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body style="background:#0b1230">
+  <div id="boot-loader" role="status" aria-label="Loading">
+    <div class="spinner"></div>
+  </div>
+  <div id="root"></div>
+  <script>
+    (function () {
+      var el = document.getElementById('boot-loader');
+      if (!el) return;
+      if (location.pathname.indexOf('/admin') === 0) { el.remove(); return; }
+      var MIN = 3000; // lama minimal loader tampil (milidetik)
+      var start = Date.now();
+      var done = false;
+      function hide() {
+        if (done) return;
+        done = true;
+        var wait = Math.max(0, MIN - (Date.now() - start));
+        setTimeout(function () {
+          el.classList.add('is-hide');
+          setTimeout(function () { el.remove(); }, 500);
+        }, wait);
+      }
+      if (document.readyState === 'complete') hide();
+      else window.addEventListener('load', hide);
+      setTimeout(hide, 6000);
+    })();
+  </script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

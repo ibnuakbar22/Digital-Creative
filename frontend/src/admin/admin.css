@@ -1,0 +1,196 @@
+.adm {
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+    background: #0b1230;
+    color: #e9d5ff;
+    font: 14px/1.5 'Poppins', system-ui, sans-serif;
+}
+
+.adm * {
+    box-sizing: border-box;
+}
+
+.adm__wrap {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.adm h1 {
+    margin: 0 0 4px;
+    font: 400 24px 'Adamina', serif;
+    color: #fde68a;
+}
+
+.adm h2 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: #67e8f9;
+    font-weight: 600;
+}
+
+.adm__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.adm__card {
+    padding: 18px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: #160d28;
+    border: 1px solid rgba(168, 85, 247, .35);
+}
+
+.adm label {
+    display: grid;
+    gap: 4px;
+    font-size: 12px;
+    color: #d8b4fe;
+}
+
+.adm input,
+.adm textarea,
+.adm select {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 8px;
+    border: 1px solid rgba(168, 85, 247, .4);
+    background: #0f0a1f;
+    color: #fff;
+    font: inherit;
+}
+
+.adm textarea {
+    min-height: 84px;
+    resize: vertical;
+}
+
+.adm input[type=checkbox] {
+    width: auto;
+}
+
+.adm__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.adm__full {
+    grid-column: 1 / -1;
+}
+
+.adm button {
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1px solid #67e8f9;
+    background: #351f68;
+    color: #67e8f9;
+    font: inherit;
+    cursor: pointer;
+}
+
+.adm button:hover:not(:disabled) {
+    filter: brightness(1.2);
+}
+
+.adm button:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
+.adm .danger {
+    border-color: #f87171;
+    color: #fca5a5;
+    background: #3b1020;
+}
+
+.adm .ghost {
+    background: transparent;
+}
+
+.adm__err {
+    color: #fca5a5;
+    margin: 8px 0 0;
+}
+
+.adm__ok {
+    color: #86efac;
+    margin: 8px 0 0;
+}
+
+.adm__row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid rgba(168, 85, 247, .2);
+}
+
+.adm__thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    background: rgba(168, 85, 247, .15);
+}
+
+.adm__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.adm__meta {
+    font-size: 12px;
+    color: #c4b5fd;
+}
+
+.adm__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.adm__login {
+    max-width: 380px;
+    margin: 14vh auto 0;
+}
+
+@media (max-width: 640px) {
+    .adm__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .adm__row {
+        grid-template-columns: 44px 1fr;
+    }
+
+    .adm__actions {
+        grid-column: 1 / -1;
+    }
+}
+
+.adm__tabbar {
+    min-height: 0;
+    padding-bottom: 0;
+}
+
+.adm__tabs {
+    display: flex;
+    gap: 8px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.adm .adm__tabs button.on {
+    background: #6366f1;
+    border-color: #6366f1;
+    color: #fff;
+}
