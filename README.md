@@ -34,9 +34,12 @@ Prasyarat: Node.js ≥ 20 dan sebuah database PostgreSQL (paling mudah: project 
    cd frontend && npm install && npm run dev     # http://localhost:5173
    ```
 3. Admin dashboard: **http://localhost:5173/admin** (login dengan ADMIN_EMAIL + password di atas).
-   Tanpa konfigurasi Supabase Storage, upload gambar disimpan di `backend/uploads` (hanya untuk development).
+   Upload gambar disimpan di Supabase Storage jika dikonfigurasi; jika tidak, file disimpan di PostgreSQL agar tetap tersedia setelah deploy.
 
-Frontend tetap bisa dibuka tanpa backend: card project memakai 4 project dari desain sebagai cadangan.
+Frontend publik menggunakan snapshot lokal dan bisa dijalankan tanpa backend maupun database.
+
+### Situs publik tanpa database
+Halaman publik memakai snapshot statis project, sertifikat, dan gambar di frontend; pengunjung situs tidak memerlukan koneksi ke database/backend. Untuk mengambil seluruh data terbaru dari database satu kali sebelum deploy, jalankan `npm run export-static` dari folder `backend`. Perintah ini memperbarui `frontend/src/data/staticProjects.json`, `staticCertificates.json`, dan gambar di `frontend/public/assets/media/`. Commit hasil export dan deploy frontend. Perubahan dari dashboard admin tidak otomatis masuk ke situs statis; jalankan export dan deploy ulang setelah perubahan konten.
 
 ## .env
 Lihat `.env.example` (semua variabel dijelaskan). Jangan pernah commit `.env`. Service-role key Supabase hanya boleh ada di backend.
@@ -53,7 +56,7 @@ Lihat `.env.example` (semua variabel dijelaskan). Jangan pernah commit `.env`. S
 
 ## Model data project
 `id (uuid) · name · category · description · emoji · coverUrl · year · demoUrl · repoUrl · sortOrder · published · createdAt · updatedAt`
-Card di website hanya menampilkan kategori, nama, emoji/cover, dan deskripsi (sesuai desain). Seluruh card adalah satu komponen: `ProjectCard.jsx`, dirender oleh `ProjectList.jsx` dari `projectService.js`. Jika project punya link demo/repo, card bisa diklik. Warna aksen card bergilir otomatis.
+Card di website hanya menampilkan kategori, nama, emoji/cover, dan deskripsi (sesuai desain). Data publik dibaca dari `staticProjects.json`; kartu dirender oleh `ProjectCard.jsx` dan `ProjectList.jsx`. Jika project punya link demo/repo, card bisa diklik. Warna aksen card bergilir otomatis.
 
 ## API (`/api`, JSON)
 | Method & path | Auth | Keterangan |
@@ -72,10 +75,9 @@ Error: `{ "error": "pesan", "details": [{field,message}] }` (422 untuk validasi,
 Header: `Authorization: Bearer <token>`.
 
 ## Deployment
-1. **Supabase**: buat project → ambil *Connection string* (DATABASE_URL) → buat bucket Storage **publik** bernama `project-covers` → ambil `SUPABASE_URL` dan `service_role` key.
-2. **Backend** (Render / Railway / Fly): root `backend`, build `npm install`, start `npm start`. Set env: `NODE_ENV=production`, `DATABASE_URL`, `DATABASE_SSL=true`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `FRONTEND_ORIGIN=https://domain-frontend-anda`, `SUPABASE_*`. Jalankan sekali `npm run migrate` (dan `npm run seed` jika mau).
-3. **Frontend** (Vercel / Netlify): root `frontend`, build `npm run build`, output `dist`. Set `VITE_API_URL=https://url-backend-anda`. SPA fallback sudah disiapkan (`vercel.json`, `_redirects`).
-4. Gunakan HTTPS di kedua sisi. Ganti password admin dan `JWT_SECRET` dengan nilai kuat.
+1. Dari folder `backend`, jalankan `npm run export-static` satu kali untuk menghasilkan snapshot JSON dan gambar statis dari data yang sudah ada. Jangan input ulang project atau sertifikat.
+2. Deploy **frontend saja** ke Vercel / Netlify: root `frontend`, build `npm run build`, output `dist`. Bagian publik tidak memanggil API/database; `VITE_API_URL` tidak dibutuhkan untuk menampilkan project dan sertifikat.
+3. Jalankan ulang `npm run export-static` dan deploy ulang frontend setiap kali konten perlu diperbarui. Dashboard admin tetap memerlukan backend/database dan bukan jalur pembaruan situs statis.
 
 ## Keamanan
 Endpoint tulis dilindungi JWT admin; input divalidasi (zod); query memakai parameter (anti SQL injection); `helmet`, CORS dibatasi ke `FRONTEND_ORIGIN`; rate-limit login; upload dibatasi tipe & ukuran; tidak ada secret di frontend. Token admin disimpan di `sessionStorage` (hilang saat tab ditutup).

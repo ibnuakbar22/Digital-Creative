@@ -1,0 +1,82 @@
+[
+  {
+    "id": "c965d990-a746-490b-b477-da3214a391ba",
+    "title": "Panit",
+    "issuer": "Forum OSIS Sumsel",
+    "imageUrl": "/assets/media/fbc67dc86be706d9116c732075e9e7153bfce8318b53af954a319f29b52ed2a0.png",
+    "year": 2024,
+    "credentialUrl": null,
+    "sortOrder": 0,
+    "published": true
+  },
+  {
+    "id": "8b0fb33f-4dec-49bd-9802-3f055732b8a6",
+    "title": "Anggota",
+    "issuer": "Forum OSIS Sumsel",
+    "imageUrl": "/assets/media/887e45236456ae5ee4ba14821b186c4c4878c4402c83f1b5dcd1bed9a98ac1e9.jpg",
+    "year": 2023,
+    "credentialUrl": null,
+    "sortOrder": 0,
+    "published": true
+  },
+  {
+    "id": "5d3d6719-f89b-4401-83c2-d90346fe926f",
+    "title": "Best Award Essay",
+    "issuer": "PT. Media Selaras Entertainment",
+    "imageUrl": "/assets/media/6624e6115952d31ea3bf4982c6efb666ca31b3d676683ccaefffc78becc9bbc5.png",
+    "year": 2025,
+    "credentialUrl": null,
+    "sortOrder": 0,
+    "published": true
+  },
+  {
+    "id": "1fbbec11-5f1e-47cb-8093-5ee0069d00b8",
+    "title": "Essay",
+    "issuer": "PT. Media Selaras Entertainment",
+    "imageUrl": "/assets/media/406ed6702874c4cfe4ba5016d84e8eddfa6dcb84c92fcf4ecd2714e504223ee5.jpg",
+    "year": 2025,
+    "credentialUrl": null,
+    "sortOrder": 0,
+    "published": true
+  },
+  {
+    "id": "66bfe7b6-8a2c-417c-a55c-f7f8ec31d273",
+    "title": "Lomba Poster",
+    "issuer": "Univ. Lamongan",
+    "imageUrl": "/assets/media/aee81a450d90a889a30ccfdfbe3421382e24aba255d234aee57fce8292aaf84d.png",
+    "year": 2026,
+    "credentialUrl": null,
+    "sortOrder": 1,
+    "published": true
+  },
+  {
+    "id": "3af0c903-3f6e-4da9-b8e2-2785500d4755",
+    "title": "Lomba Infografis",
+    "issuer": "Univ. Airlangga",
+    "imageUrl": "/assets/media/8661043c510a5f521582e95f661d6d06d660c8c1f2ce962e62c1414b9acbd055.png",
+    "year": 2026,
+    "credentialUrl": null,
+    "sortOrder": 2,
+    "published": true
+  },
+  {
+    "id": "087dd54c-a37f-462f-bc9c-00fff8813912",
+    "title": "Champions Design Logo",
+    "issuer": "Univ. Lembah Dempo",
+    "imageUrl": "/assets/media/a7f6c28aa2baf0c74a4ac9f5f6c69f266f2324678587892f6175620bc739e28b.png",
+    "year": 2024,
+    "credentialUrl": null,
+    "sortOrder": 3,
+    "published": true
+  },
+  {
+    "id": "e9bad1c0-e716-44d1-8b95-07762eb8bf13",
+    "title": "Champions Poster",
+    "issuer": "Dinas Pendidikan Prov. Sumsel",
+    "imageUrl": "/assets/media/cf4e944beedfd822362f9532f7a5b32dfee29af7686c417af9253d2742f3baa2.png",
+    "year": 2022,
+    "credentialUrl": null,
+    "sortOrder": 4,
+    "published": true
+  }
+]

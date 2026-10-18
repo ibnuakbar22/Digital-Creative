@@ -6,15 +6,18 @@ export async function request(path, { method = 'GET', body, token, form } = {}) 
   if (body) headers['Content-Type'] = 'application/json';
   const res = await fetch(`${API_BASE}/api${path}`, { method, headers, body: form ?? (body ? JSON.stringify(body) : undefined) });
   if (res.status === 204) return null;
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    const err = new Error(data.error || `Request gagal (${res.status})`);
+  // Kalau server mengembalikan HTML (mis. backend belum terhubung), anggap sebagai error — bukan data kosong.
+  const data = await res.json().catch(() => null);
+  if (!res.ok || data === null) {
+    const err = new Error((data && data.error) || `Request gagal (${res.status})`);
     err.status = res.status;
-    err.details = data.details;
+    err.details = data && data.details;
     throw err;
   }
   return data;
 }
 
-// Gambar hasil upload lokal (dev) berbentuk "/uploads/..." — arahkan ke host API.
-export const assetUrl = (u) => (u && u.startsWith('/') ? `${API_BASE}${u}` : u);
+// API-managed uploads use the backend; static public assets stay on the frontend host.
+export const assetUrl = (u) => (
+  u && (u.startsWith('/api/') || u.startsWith('/uploads/')) ? `${API_BASE}${u}` : u
+);

@@ -3,7 +3,7 @@ import * as Project from '../models/projectModel.js';
 
 const empty = (v) => (v === '' ? null : v);
 const url = z.preprocess(empty, z.string().url().max(500).refine((u) => /^https?:\/\//.test(u), 'Harus diawali http(s)://').nullable());
-const coverUrl = z.preprocess(empty, z.string().max(500).regex(/^(https?:\/\/|\/uploads\/)/, 'URL gambar tidak valid').nullable());
+const coverUrl = z.preprocess(empty, z.string().max(500).regex(/^(https?:\/\/|\/uploads\/|\/api\/files\/)/, 'URL gambar tidak valid').nullable());
 const year = z.preprocess((v) => (v === '' ? null : v == null ? v : Number(v)), z.number().int().min(1990).max(2100).nullable());
 
 const base = z.object({

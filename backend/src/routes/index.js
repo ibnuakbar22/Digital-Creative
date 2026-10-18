@@ -4,7 +4,7 @@ import { requireAdmin } from '../middleware/auth.js';
 import * as auth from '../controllers/authController.js';
 import * as projects from '../controllers/projectController.js';
 import * as certificates from '../controllers/certificateController.js';
-import { uploadImage, uploadMiddleware } from '../controllers/uploadController.js';
+import { serveFile, uploadImage, uploadMiddleware } from '../controllers/uploadController.js';
 
 // Express 4 tidak menangkap error async otomatis, jadi dibungkus.
 const h = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -26,6 +26,7 @@ router.post('/certificates', requireAdmin, h(certificates.create));
 router.put('/certificates/:id', requireAdmin, h(certificates.update));
 router.delete('/certificates/:id', requireAdmin, h(certificates.remove));
 
+router.get('/files/:id', h(serveFile));
 router.post('/uploads', requireAdmin, uploadMiddleware, h(uploadImage));
 
 export default router;
